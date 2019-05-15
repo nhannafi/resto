@@ -1,0 +1,26 @@
+
+<h1>Voici le détail du plat</h1>
+<section>
+     <table>
+        <tr>
+            <th><p>Titre</p></th>
+            <th><p>Description</p></th>
+            <th><p>Image</p></th>
+            <th><p>Prix</p></th>
+            <th><p>Prix de revient</p></th>
+            <th><p>Modifier</p></th>
+            <th><p>Supprimer</p></th>
+        </tr>
+        <tr class="platContainer">
+            <td><?= htmlspecialchars($plat["Titre"]) ?></td>
+            <td><?= htmlspecialchars($plat["Description"]) ?></td>
+            <td class="imagetd"> <img src="<?= $router->getWwwPath() ?>/upload/plats/<?= htmlspecialchars($plat["Images"]) ?>" alt="platsPhotos"></td>
+            <td><?= htmlspecialchars($plat["Prix_Vente"])." euros" ?></td>
+            <td><?= htmlspecialchars($plat["Prix_Reviens"]). " euros" ?></td>
+
+            <td><button><a href="<?= $router->generatePath("resto_plat_update") ?>?id=<?= $plat["Id"]?>"><i class="fas fa-pencil-alt"></i>Modifier</a></button></td>
+            <td><button><a href="<?= $router->generatePath("resto_plat_remove") ?> "><i class="fas fa-trash-alt"></i>Supprimer</a></button></td>
+        </tr>
+    </table>
+</section>
+

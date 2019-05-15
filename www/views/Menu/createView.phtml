@@ -1,0 +1,77 @@
+<legend><i class="fa fa-sticky-note-o"></i> Nouvel Menu</legend>
+<form method="post" >
+    <ul>
+        <li>
+            <label for="title">Titre :</label>
+            <input type="text" id="title" name="titre" autocomplete="off">
+        </li>
+
+        <li>
+            <label for="Date_debut">Date Debut:</label>
+            <select name="jourDebut">
+                <?php for($i=1; $i<=31; $i++):  ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+
+            <select name="moisDebut">
+                <option value="1">Janvier</option>
+                <option value="2">fevrier</option>
+                <option value="3">Mars</option>
+                <option value="4">Avril</option>
+                <option value="5">Mai</option>
+                <option value="6">Juin</option>
+                <option value="7">Juillet</option>
+                <option value="8">Aout</option>
+                <option value="9">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Decembre</option>
+            </select>
+            <select name="anneeDebut">
+                <?php for($i=2019; $i<=2030; $i++):  ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+        </li>
+        <li>
+            <label for="Date_Fin">Date Fin:</label>
+            <select name="jourFin">
+                <?php for($i=1; $i<=31; $i++):  ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+
+            <select name="moisFin">
+
+                <option value="1">Janvier</option>
+                <option value="2">fevrier</option>
+                <option value="3">Mars</option>
+                <option value="4">Avril</option>
+                <option value="5">Mai</option>
+                <option value="6">Juin</option>
+                <option value="7">Juillet</option>
+                <option value="8">Aout</option>
+                <option value="9">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Decembre</option>
+
+            </select>
+            <select name="anneeFin">
+                <?php for($i=2019; $i<=2030; $i++):  ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+        </li>
+        <li>
+            <?php foreach($allPlats as $plat): ?>
+            <div>
+                <input type="checkbox" name="plats[]" value="<?= $plat['Id']?>">
+                <label ><?= htmlspecialchars($plat['Titre'])?></label>
+            </div>
+            <?php endforeach;?>
+        </li>
+        <input type="submit" class="btn btn-primary" name="Ajouter">
+    </ul>
+</form>

@@ -1,0 +1,31 @@
+
+ <?php foreach($allMenus as $menu): ?>
+
+    <section class="card mb-3 ml-3 removable-container" style="max-width: 540px;">
+        <article class="row no-gutters" style=" width=500px; heigth=301px ">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5>
+                        <a href="<?=$router->generatePath("resto_menu_show")?>?id=<?=$menu["Id"]?>">
+                            <?= htmlspecialchars($menu['Titre']) ?>
+                        </a>
+                    </h5>
+                    <p>
+                        du <?= date_create($menu['Date_Debut'])->format("d/m/Y") ?> à <?= date_create($menu['Date_Debut'])->format("h\hi") ?>
+                    </p>
+                    <p>
+                        au <?= date_create($menu['Date_Fin'])->format("d/m/Y")?> à <?= date_create($menu['Date_Debut'])->format("h\hi") ?>
+                    </p>
+
+                    <?php foreach ($allPlats[$menu['Id']] as $plat): ?>
+                        <li><?= htmlspecialchars($plat['Titre'])?></li>
+                    <?php endforeach; ?>
+                    <a href="#" class="ajaxDelete" data-action="<?= $router->generatePath("resto_menu_removeajax") ?>" data-id="<?= $menu["Id"] ?>"><i class="fas fa-trash-alt"></i></a>
+                    <a href="<?= $router->generatePath("resto_menu_update") ?>?id=<?= $menu['Id'] ?>"><i class="fas fa-edit"></i></a>
+                </div>
+            </div>
+        </article>
+    </section>
+<?php endforeach; ?>
+
+<script src="<?= $router->getWwwPath()?>/js/ajaxDelete.js"></script>

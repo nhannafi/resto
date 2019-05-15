@@ -1,0 +1,66 @@
+
+<h1>Votre panier</h1>
+
+<?php if(empty($allOrderLines)): ?>
+    <h4>Votre Panier est vide pour l'instant</h4>
+    <p style="color: red">Dépéchez vous de consommer!!!</p>
+<?php else: ?>
+    <table>
+        <tr>
+            <th>Menu</th>
+            <th>Image</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th>Prix Total</th>
+
+            <th>Modifier / Supprimer</th>
+        </tr>
+
+        <?php $total= 0; ?><!-- création variable du grand total de la commande-->
+        <?php foreach ($allOrderLines as $orderLine): ?>
+            <tr class="removableContainer" id="line<?= $orderLine["Id"]?>">
+                <td >
+                    <?= $orderLine["Title"] ?>
+                </td>
+                <td class="photo-plat">
+                    <?php if($orderLine["Image"]):?>
+                        <img src="<?= $router->getWwwPath() ?>/upload/photos-menu/<?=$orderLine["Image"]?>" alt="Photo du plat le <?=htmlspecialchars($orderLine["Title"]) ?>">
+                    <?php else:?>
+                        <img src="<?= $router->getWwwPath() ?>/img/default.png" alt="Photo du menu le <?=htmlspecialchars($orderLine["Title"]) ?>">
+                    <?php endif;?>
+                </td>
+                <td class="quantityOrdered">
+                    <?= $orderLine['QuantityOrdered'] ?>
+                </td>
+                <td>
+                    <span class="priceEach"><?= number_format($orderLine['PriceEach'], 2)?></span>&nbsp;€
+                </td>
+                <td>
+                    <span class="subTotalPrice"><?= number_format($orderLine['QuantityOrdered'] * $orderLine['PriceEach'], 2)?></span> &nbsp;€
+                    <?php $total += $orderLine['QuantityOrdered'] * $orderLine['PriceEach'] ?><!-- incrémentation du grand total de la commande-->
+                </td>
+                    <td class="edit-suppr">
+                        <select class="update-basket-line" data-action="<?= $router->generatePath("resto_order_updateItemQuantity")?>" data-id="<?= $orderLine["Id"]?>">
+							<?php for($i=0; $i<=$orderLine['QuantityOrdered']+5; $i++): ?>
+                                <option value="<?= $i ?>" <?php if($i== $orderLine['QuantityOrdered']):?>selected="selected"<?php endif; ?>><?= $i ?></option>
+							<?php endfor; ?>
+                        </select>
+                        <button>
+                            <a href="#" id="orderlinTrash<?= $orderLine["Id"]?>" class="delete-basket-item" data-action="<?= $router->generatePath("resto_order_removeItem")?>" data-id="<?= $orderLine["Id"]?>">
+                                <i class="fas fa-trash-alt"></i>Enlever du panier
+                            </a>
+                        </button>
+                    </td>
+
+            </tr>
+        <?php endforeach; ?>
+    </table>
+    <p>TOTAL : <span id="totalPrice"><?= $total ?></span>&nbsp;€</p>
+
+    <a href="<?= $router->generatePath('resto_order_emptyBasket') ?>">
+        <i class="fas fa-trash-alt"></i>Vider le panier
+    </a>
+<?php endif; ?>
+
+<script src="<?= $router->getWwwPath() ?>/js/basketManagement.js"></script>
+<script src="<?= $router->getWwwPath() ?>/js/removeAjax.js"></script>

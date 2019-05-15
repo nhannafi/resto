@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>READY TO EAT
+        <?php if(isset($title)){echo "|" .$title ;} ?>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="<?=$router->getWwwPath()?>/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/regular.css" integrity="sha384-FKw7x8fCxuvzBwOJmhTJJsKzBl8dnN9e2R4+pXRfYoHivikuHkzWyhKWDSMcGNK8" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <header id="header" class="">
+        <strong id="logo">
+            <a  accesskey="1" href="<?=$router->generatePath("resto_home")?>">
+                <img  class="img" src="<?=$router->getWwwPath()?>/upload/logo1.png">
+            </a>
+        </strong>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="<?=$router->generatePath("resto_menu_showAll")?>">MENU</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?=$router->generatePath("resto_plat_showAll")?>">PLATS <span class="sr-only">(current)</span></a>
+                    </li><li class="nav-item active">
+                        <a class="nav-link" href="<?=$router->generatePath("resto_reservation_create")?>">RESERVATION <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?=$router->generatePath("resto_user_contact")?>">CONTACT</a>
+                    </li>
+                    <?php if(!$userSession->isAuthenticated()):?>
+                    <li class="nav-item active">
+                        <a class="nav-link"  href="<?=$router->generatePath("resto_user_signup")?>">INSCRIPTION</a>
+                    </li>
+                    <?php endif; ?>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?=$router->generatePath("resto_user_login")?>">CONNECTEZ-VOUS <span class="sr-only">(current)</span></a>
+                    </li>
+                    <?php if($userSession->isAuthenticated()):?>
+                    <li class="nav-item active">
+                        <p>Bonjour!!! <?= $userSession->getFirstName()?></p>
+                        <a class="nav-link" href="<?=$router->generatePath("resto_user_logout")?>">DECONNEXION <span class="sr-only">(current)</span></a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <?php foreach ($flashbag->getAllMessages() as $message):?>
+            <p><?= $message?></p>
+        <?php endforeach; ?>
+        <?php include $templatePath ?>
+    </main>
+    <footer>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?=$router->generatePath("resto_home")?>">ACCUEIL <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=$router->generatePath("resto_menu_showAll")?>">MENU</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=$router->generatePath("resto_reservation_create")?>">RESERVATION</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fab fa-youtube"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <section class="text-center">
+            <img  class="img" src="<?=$router->getWwwPath()?>/upload/logo1.png">
+            <p class="card-footer text-muted"> © Ready (France) 2019, Numéro d'enregistrement 1854213 · Ready to eat (Europe)</p>
+        </section>
+
+    </footer>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?php //var_dump($allPlats)?>
+<?php if($userSession->isAdmin()):?>
+    <a class="ajouter" href="<?= $router->generatePath('resto_plat_create')?>">AJOUTER UN PLAT</a>
+<?php endif; ?>
+<?php foreach($allPlats as $plat): ?>
+    <section class="card mb-3 ml-3 removable-container" style="max-width: 540px;">
+        <article class="row no-gutters" style=" width=500px; heigth=301px ">
+            <div class="col-md-4" style=" width=500px; heigth=301px " >
+                <?php if($plat['Images']): ?>
+                    <img src="<?=$router->getWwwPath()?>/upload/plats/<?=$plat['Images'] ?>">
+                <?php else : ?>
+                    <img src="<?=$router->getWwwPath()?>/upload/plats/plat-default.jpg">
+                <?php endif; ?>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5><a href="<?=$router->generatePath("resto_plat_show")?>?id=<?=$plat["Id"]?>"><?= htmlspecialchars($plat['Titre']) ?></a></h5>
+                    <p><?= htmlspecialchars(substr($plat['Description'],0 , 100)) ?>...</p>
+                    <?=$plat['Prix_Vente']?> €
+                    <a href="#" class="remove-plat" data-action="<?=$router->generatePath("resto_plat_removeajax")?>" data-id="<?=$plat["Id"]?>"><i class="fas fa-trash-alt"></i></a>
+                    <a href="<?=$router->generatePath("resto_plat_update")?>?id=<?=$plat["Id"]?>"><i class="fas fa-edit"></i></a>
+                </div>
+            </div>
+        </article>
+    </section>
+<?php endforeach; ?>
+<script src="<?= $router->getWwwPath()?>/js/ajaxDelete.js"></script>

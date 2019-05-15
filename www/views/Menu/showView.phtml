@@ -1,0 +1,19 @@
+
+<h1>Voici le détail du Menu</h1>
+<section>
+    <div>
+        <h4><?= htmlspecialchars($menu['Titre'])?></h4>
+        <p>
+            du <?= date_create($menu['Date_Debut'])->format("d/m/Y") ?> à <?= date_create($menu['Date_Debut'])->format("h\hi") ?>
+            au <?= date_create($menu['Date_Fin'])->format("d/m/Y")?> à <?= date_create($menu['Date_Debut'])->format("h\hi") ?>
+        </p>
+
+        <ul>
+            <?php foreach($plats as $plat): ?>
+                <li>
+                    <?= $plat["Titre"] ?>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+</section>

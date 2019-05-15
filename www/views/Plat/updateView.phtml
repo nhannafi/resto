@@ -1,0 +1,37 @@
+<legend> Modifier un plat</legend>
+<form  action="<?=$router->generatePath("resto_plat_update")?>" method="post" novalidate enctype="multipart/form-data">
+    <ul>
+        <li>
+            <input type="text" id="idplat" name="idplat" autocomplete="off" value="<?= $plat["Id"]?>"  hidden="hidden" >
+        </li>
+        <li>
+            <label for="title">Titre :</label>
+            <input type="text" id="title" name="titre" autocomplete="off" value="<?=htmlspecialchars($plat["Titre"])?>" >
+        </li>
+        <li>
+            <label class="textarea" for="contents">Description :</label>
+            <textarea id="contents" rows="15" name="description" autocomplete="off"><?=htmlspecialchars($plat["Description"])?></textarea>
+        </li>
+        <li>
+            <?php if($plat['Images']): ?>
+                <img src="<?=$router->getWwwPath()?>/upload/plats/<?=$plat['Images'] ?>">
+                <input id="photosuppr" type="checkbox" name="photo-suppr">
+                <label for="photosuppr">Supprimer la photo</label>
+            <?php else : ?>
+                <p style="color: pink;">PAS D'IMAGE</p>
+            <?php endif ?>
+            <input type="file" id="image" name="image" autocomplete="off" value="<?=$plat["Images"]?>">
+        </li>
+
+        <li>
+            <label for="buyPrice">Prix de revient :</label>
+            <input type="text" id="buyPrice" name="Prix_Achat" autocomplete="off" value="<?=$plat["Prix_Reviens"]?>">
+        </li>
+        <li>
+            <label for="sellPrice">Prix de vente :</label>
+            <input type="text" id="sellPrice" name="Prix_Vente" autocomplete="off" value="<?=$plat["Prix_Vente"]?>">
+        </li>
+
+        <input type="submit" class="btn btn-primary" value="Modifier">
+    </ul>
+</form>

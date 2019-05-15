@@ -1,0 +1,17 @@
+<h1>Mon Compte</h1>
+<section>
+    <table class="Plats ">
+        <?php foreach($allReservations as $reservation): ?>
+            <tr class="platContainer">
+                <td><?= htmlspecialchars($reservation["NbrSiege"]) ?></td>
+                <td>Le <?= date_create($reservation["DateResa"])->format("d/m/Y") ?></td>
+                <td><?= htmlspecialchars($reservation["Service"])?></td>
+                <td>
+                    <a href="#" class="ajaxDelete" data-action="<?= $router->generatePath("resto_reservation_cancelAjax") ?>" data-id="<?= $reservation['Id'] ?>"><i class="fas fa-eraser"></i></a>
+                </td>
+            </tr>
+        <?php endforeach;?>
+    </table>
+</section>
+<script src="<?=$router->getwwwPath()?>/js/deleteAjax.js"></script>
+

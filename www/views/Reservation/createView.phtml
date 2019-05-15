@@ -1,0 +1,58 @@
+<legend><i class="fa fa-sticky-note-o"></i> Nouvelle Reservation</legend>
+<form method="post" >
+    <ul>
+
+        <li>
+            <label for="sieges">Nombre des sièges:</label>
+            <select name="Nbr_sieges" id="sieges">
+                <?php for($i=1; $i<=20; $i++):  ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+
+        </li>
+        <li>
+            <label for="User_Id"></label>
+            <input type="text" id="User_Id" name="User_Id" autocomplete="off" hidden="hidden">
+        </li>
+
+        <li>
+            <label for="Date_Reserv">Date de réservation</label>
+            <select name="jour" id="Date_Reserv">
+                <?php for($i=1; $i<=31; $i++):  ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+
+            <select name="mois">
+                <option value="1">Janvier</option>
+                <option value="2">février</option>
+                <option value="3">Mars</option>
+                <option value="4">Avril</option>
+                <option value="5">Mai</option>
+                <option value="6">Juin</option>
+                <option value="7">Juillet</option>
+                <option value="8">Aout</option>
+                <option value="9">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Décembre</option>
+            </select>
+            <select name="annee">
+                <?php for($i=2019; $i<=2022; $i++):  ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+        </li>
+        <li>
+            <div>
+                <label>Services</label>
+                <select name="Service">
+                    <option>Midi</option>
+                    <option>Soir</option>
+                </select>
+            </div>
+        </li>
+        <input type="submit" class="btn btn-primary" value="Réserver">
+    </ul>
+</form>

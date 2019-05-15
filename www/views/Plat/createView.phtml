@@ -1,0 +1,27 @@
+
+<legend><i class="fa fa-sticky-note-o"></i> Nouvel plat</legend>
+<form method="post" novalidate enctype="multipart/form-data">
+    <ul>
+        <li>
+            <label for="title">Titre :</label>
+            <input type="text" id="title" name="titre" autocomplete="off">
+        </li>
+        <li>
+            <label class="textarea" for="contents">Description :</label>
+            <textarea id="contents" rows="15" name="description" autocomplete="off"></textarea>
+        </li>
+        <li>
+            <label for="image">Image :</label>
+            <input type="file" id="image" name="image" autocomplete="off">
+        </li>
+        <li>
+            <label for="buyPrice">Prix de revient :</label>
+            <input type="text" id="buyPrice" name="Prix_Achat" autocomplete="off">
+        </li>
+        <li>
+            <label for="sellPrice">Prix de vente :</label>
+            <input type="text" id="sellPrice" name="Prix_Vente" autocomplete="off">
+        </li>
+
+        <input type="submit" class="btn btn-primary" name="Ajouter">
+    </ul>

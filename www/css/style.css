@@ -1,0 +1,69 @@
+/*HEADER*/
+header
+{
+    background-color: antiquewhite;
+}
+.section
+{
+    /*background-image: url("/resto/www/upload/plats/restaurant1.jpg");*/
+    width: 100%;
+    height: 500px;
+}
+li
+{
+    list-style: none;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary
+{
+    display: block;
+}
+audio,
+canvas,
+progress,
+video
+{
+    display: inline-block;
+    vertical-align: baseline;
+}
+a
+{
+    background: transparent;
+}
+a:active,
+a:hover
+{
+    outline: 0;
+}
+strong
+{
+    font-weight: bold;
+}
+small
+{
+    font-size: 80%;
+}
+
+ .w-100
+{
+    width: 100%;
+    height:30%;
+
+}
+ h2
+ {
+
+ }
+.text{
+    text-align: center;
+}
